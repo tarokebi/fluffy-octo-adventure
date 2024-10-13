@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<!-- com.example ここを変えた方が良いかもしれない -->
+	<!-- com.example ここを変えた方が良いかもしれない edited -->
 	<artifactId>foa-backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>foa-backend</name>
