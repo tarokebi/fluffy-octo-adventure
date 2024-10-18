@@ -1,2 +1,1 @@
-# dependency for client-side runtime
 requests
