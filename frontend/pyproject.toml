@@ -5,7 +5,9 @@ description = "Add your description here"
 authors = [
     { name = "iwsh", email = "kabwkkr.seanae@gmail.com" }
 ]
-dependencies = []
+dependencies = [
+    "flet>=0.24.1",
+]
 readme = "README.md"
 requires-python = ">= 3.8"
 
@@ -16,3 +18,10 @@ requires-python = ">= 3.8"
 managed = true
 virtual = true
 dev-dependencies = []
+
+[tool.rye.scripts]
+dev = "flet run --web -p 3000 -d -r src"
+dev-native = "flet run src"
+mock = "python mock/mock.py"
+build = "flet build web src"
+host-generated = "python -m http.server 3000 -d ./src/build/web/"
