@@ -4,10 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class FoaBackendApplication {
-
+public class FoaBackendAppTests {
 	public static void main(String[] args) {
-		SpringApplication.run(FoaBackendApplication.class, args);
+		SpringApplication.run(FoaBackendAppTests.class, args);
 	}
-
 }

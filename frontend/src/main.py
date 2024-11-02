@@ -12,7 +12,7 @@ def main(page: ft.Page):
         page.update()
 
         try:
-            response = requests.get("http://localhost:8000")
+            response = requests.get("http://localhost:8080/api")
             data = response.json()
             status_text.value = f"Status: {data['status']}"
         except requests.RequestException as exc:
