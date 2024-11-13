@@ -18,9 +18,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-// User.java
 @Entity
-@Table(name = "app_users") // テーブル名を "user" から "app_users" に変更
+@Table(name = "app_users")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -29,12 +28,12 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "名前は必須です")
-    @Size(min = 1, max = 100, message = "名前は1-100文字で入力してください")
+    @NotBlank(message = "'name' is required.")
+    @Size(min = 1, max = 100, message = "'name' must be 1-100 characters.")
     private String name;
 
-    @NotBlank(message = "メールアドレスは必須です")
-    @Email(message = "有効なメールアドレスを入力してください")
+    @NotBlank(message = "'email' is required.")
+    @Email(message = "You need valid email.")
     private String email;
 
     @CreatedDate

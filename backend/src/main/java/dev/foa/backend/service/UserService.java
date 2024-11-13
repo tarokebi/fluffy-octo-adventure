@@ -18,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 @Transactional
 @RequiredArgsConstructor
 public class UserService {
+
     private final UserRepository userRepository;
 
     public List<User> getAllUsers() {
@@ -60,4 +61,5 @@ public class UserService {
         }
         userRepository.deleteById(id);
     }
+
 }

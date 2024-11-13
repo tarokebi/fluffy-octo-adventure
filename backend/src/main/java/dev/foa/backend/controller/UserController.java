@@ -23,35 +23,37 @@ import com.example.foa.service.UserService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/users")
 @RequiredArgsConstructor
 public class UserController {
+
     private final UserService userService;
 
-    @GetMapping("/users")
+    @GetMapping("")
     public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
 
-    @GetMapping("/users/{id}")
+    @GetMapping("/{id}")
     public User getUserById(@PathVariable Long id) {
         return userService.getUserById(id);
     }
 
-    @PostMapping("/users")
+    @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
     public User createUser(@RequestBody @Valid UserDTO userDTO) {
         return userService.createUser(userDTO);
     }
 
-    @PutMapping("/users/{id}")
+    @PutMapping("/{id}")
     public User updateUser(@PathVariable Long id, @RequestBody @Valid UserDTO userDTO) {
         return userService.updateUser(id, userDTO);
     }
 
-    @DeleteMapping("/users/{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
     }
+
 }
