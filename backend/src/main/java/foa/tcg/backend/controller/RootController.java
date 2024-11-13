@@ -1,4 +1,4 @@
-package dev.foa.backend.controller;
+package foa.tcg.backend.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;

@@ -1,6 +1,6 @@
-package dev.foa.backend.model.dto;
+package foa.tcg.backend.model.dto;
 
-import dev.foa.backend.model.entity.User;
+import foa.tcg.backend.model.entity.User;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 

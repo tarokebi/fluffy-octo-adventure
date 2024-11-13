@@ -1,6 +1,6 @@
-package dev.foa.backend.repository;
+package foa.tcg.backend.repository;
 
-import dev.foa.backend.model.entity.User;
+import foa.tcg.backend.model.entity.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.simple.JdbcClient;

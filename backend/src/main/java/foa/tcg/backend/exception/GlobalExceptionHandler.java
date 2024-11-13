@@ -1,4 +1,4 @@
-package dev.foa.backend.exception;
+package foa.tcg.backend.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;

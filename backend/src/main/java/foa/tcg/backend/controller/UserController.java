@@ -1,7 +1,7 @@
-package dev.foa.backend.controller;
+package foa.tcg.backend.controller;
 
-import dev.foa.backend.model.entity.User;
-import dev.foa.backend.service.UserService;
+import foa.tcg.backend.model.entity.User;
+import foa.tcg.backend.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

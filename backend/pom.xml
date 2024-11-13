@@ -8,10 +8,10 @@
 		<version>3.3.5</version>
 		<relativePath/>
 	</parent>
-	<groupId>dev.takebi</groupId>
-	<artifactId>foa-backend</artifactId>
+	<groupId>foa.tcg</groupId>
+	<artifactId>backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>foa-backend</name>
+	<name>tcg-backend</name>
 	<description>Backend of fluffy-octo-adventure</description>
 	<url/>
 	<licenses>

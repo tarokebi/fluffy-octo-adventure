@@ -1,9 +1,9 @@
-package dev.foa.backend.service;
+package foa.tcg.backend.service;
 
-import dev.foa.backend.exception.UserAlreadyExistsException;
-import dev.foa.backend.exception.UserNotFoundException;
-import dev.foa.backend.model.entity.User;
-import dev.foa.backend.repository.UserRepository;
+import foa.tcg.backend.exception.UserAlreadyExistsException;
+import foa.tcg.backend.exception.UserNotFoundException;
+import foa.tcg.backend.model.entity.User;
+import foa.tcg.backend.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

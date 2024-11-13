@@ -1,4 +1,4 @@
-package dev.foa.backend;
+package foa.tcg.backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

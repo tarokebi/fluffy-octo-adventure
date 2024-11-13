@@ -1,9 +1,9 @@
-package dev.foa.backend.util;
+package foa.tcg.backend.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dev.foa.backend.model.dto.Users;
-import dev.foa.backend.model.entity.User;
-import dev.foa.backend.repository.UserRepository;
+import foa.tcg.backend.model.dto.Users;
+import foa.tcg.backend.model.entity.User;
+import foa.tcg.backend.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.asm.TypeReference;

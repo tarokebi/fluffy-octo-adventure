@@ -1,4 +1,4 @@
-package dev.foa.backend.model.entity;
+package foa.tcg.backend.model.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

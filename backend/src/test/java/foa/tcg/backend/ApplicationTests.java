@@ -1,4 +1,4 @@
-package dev.foa.backend;
+package foa.tcg.backend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
