@@ -12,7 +12,7 @@ import java.util.Map;
 @RequestMapping("")
 @CrossOrigin(origins = "http://localhost:3000")
 public class RootController {
-    @GetMapping({ "", "/" })
+    @GetMapping({"", "/"})
     public ResponseEntity<Map<String, String>> root() {
         return ResponseEntity.ok(Map.of("status", "ok"));
     }

@@ -1,0 +1,53 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Rob Halford",
+      "email": "rob.halford@rocknroll.co",
+      "createdAt": "2024-01-01T06:00:00",
+      "updatedAt": "2024-01-01T07:00:00"
+    },
+    {
+      "id": 2,
+      "name": "Brian Johnson",
+      "email": "brian.johnson@rocknroll.co",
+      "createdAt": "2024-01-02T06:00:00",
+      "updatedAt": "2024-01-02T07:00:00"
+    },
+    {
+      "id": 3,
+      "name": "Angus Young",
+      "email": "angus.young@rocknroll.co",
+      "createdAt": "2024-01-03T06:00:00",
+      "updatedAt": "2024-01-03T07:00:00"
+    },
+    {
+      "id": 4,
+      "name": "Axl Rose",
+      "email": "axl.rose@rocknroll.co",
+      "createdAt": "2024-01-04T06:00:00",
+      "updatedAt": "2024-01-04T07:00:00"
+    },
+    {
+      "id": 5,
+      "name": "Paul Gilbert",
+      "email": "paul.gilbert@rocknroll.co",
+      "createdAt": "2024-01-05T06:00:00",
+      "updatedAt": "2024-01-05T07:00:00"
+    },
+    {
+      "id": 6,
+      "name": "Ozzy Osbourne",
+      "email": "ozzy.osbourne@rocknroll.co",
+      "createdAt": "2024-01-06T06:00:00",
+      "updatedAt": "2024-01-06T07:00:00"
+    },
+    {
+      "id": 7,
+      "name": "Michael Schenker",
+      "email": "michael.schenker@rocknroll.co",
+      "createdAt": "2024-01-07T06:00:00",
+      "updatedAt": "2024-01-07T07:00:00"
+    }
+  ]
+}

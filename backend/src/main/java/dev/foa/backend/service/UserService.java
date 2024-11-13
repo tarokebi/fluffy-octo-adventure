@@ -1,65 +1,69 @@
-package com.example.foa.service;
+package dev.foa.backend.service;
 
-import java.util.List;
-
-import jakarta.transaction.Transactional;
-
+import dev.foa.backend.exception.UserAlreadyExistsException;
+import dev.foa.backend.exception.UserNotFoundException;
+import dev.foa.backend.model.entity.User;
+import dev.foa.backend.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
-import com.example.foa.exception.UserAlreadyExistsException;
-import com.example.foa.exception.UserNotFoundException;
-import com.example.foa.model.dto.UserDTO;
-import com.example.foa.model.entity.User;
-import com.example.foa.repository.UserRepository;
-
-import lombok.RequiredArgsConstructor;
+import java.util.List;
+import java.util.Optional;
 
 @Service
-@Transactional
-@RequiredArgsConstructor
 public class UserService {
 
     private final UserRepository userRepository;
 
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     public List<User> getAllUsers() {
-        return userRepository.findAll();
+        return userRepository.getAll();
     }
 
-    public User getUserById(Long id) {
-        return userRepository.findById(id)
-                .orElseThrow(() -> new UserNotFoundException(id));
-    }
+    public User getUserById(Integer id) {
+        Optional<User> user = userRepository.getById(id);
 
-    public User createUser(UserDTO userDTO) {
-        if (userRepository.existsByEmail(userDTO.getEmail())) {
-            throw new UserAlreadyExistsException("Email already exists: " + userDTO.getEmail());
+        if (user.isEmpty()) {
+            throw new UserNotFoundException("UserId '"+ id +"' was not found.");
         }
 
-        User user = new User();
-        user.setName(userDTO.getName());
-        user.setEmail(userDTO.getEmail());
-        return userRepository.save(user);
+        return user.get();
     }
 
-    public User updateUser(Long id, UserDTO userDTO) {
-        User user = getUserById(id);
-
-        // メールアドレスが変更される場合は重複チェック
-        if (!user.getEmail().equals(userDTO.getEmail()) &&
-                userRepository.existsByEmail(userDTO.getEmail())) {
-            throw new UserAlreadyExistsException("Email already exists: " + userDTO.getEmail());
+    public void createUser(User user) {
+        if (userRepository.existsById(user.id())) {
+            throw new UserAlreadyExistsException("UserId '"+ user.id() +"' is already in use.");
+        }
+        if (userRepository.existsByEmail(user.email())) {
+            throw new UserAlreadyExistsException("Email '"+ user.email() +"' is already in use.");
         }
 
-        user.setName(userDTO.getName());
-        user.setEmail(userDTO.getEmail());
-        return userRepository.save(user);
+        userRepository.create(user);
     }
 
-    public void deleteUser(Long id) {
+    public void updateUser(User user, Integer id) {
+        User existingUser = getUserById(id);
+
+        if (!user.email().equals(existingUser.email()) && userRepository.existsByEmail(user.email())) {
+            throw new UserAlreadyExistsException("Email '"+ user.email() +"' is already in use.");
+        }
+        if (user.name().equals(existingUser.name())) {
+            if (user.email().equals(existingUser.email())) {
+                throw new UserAlreadyExistsException("Change name or email.");
+            }
+        }
+
+        userRepository.update(user, id);
+    }
+
+    public void deleteUser(Integer id) {
         if (!userRepository.existsById(id)) {
-            throw new UserNotFoundException(id);
+            throw new UserNotFoundException("UserId '"+ id +"' was not found.");
         }
-        userRepository.deleteById(id);
+
+        userRepository.delete(id);
     }
 
 }

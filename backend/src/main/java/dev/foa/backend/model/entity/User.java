@@ -1,44 +1,31 @@
-package com.example.foa.model.entity;
-
-import java.time.LocalDateTime;
+package dev.foa.backend.model.entity;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "app_users")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public record User(
+        @Id
+        Integer id,
 
-    @NotBlank(message = "'name' is required.")
-    @Size(min = 1, max = 100, message = "'name' must be 1-100 characters.")
-    private String name;
+        @NotBlank(message = "Name is required.")
+        @Size(min = 1, max = 250, message = "Name must be 1-250 characters.")
+        String name,
 
-    @NotBlank(message = "'email' is required.")
-    @Email(message = "You need valid email.")
-    private String email;
+        @NotBlank(message = "Email address is required.")
+        @Email(message = "Email address seems to be invalid.")
+        String email,
 
-    @CreatedDate
-    private LocalDateTime createdAt;
+        @CreatedDate
+        LocalDateTime createdAt,
 
-    @LastModifiedDate
-    private LocalDateTime updatedAt;
-}
+        @LastModifiedDate
+        LocalDateTime updatedAt
+) {}

@@ -1,58 +1,48 @@
-package com.example.foa.controller;
+package dev.foa.backend.controller;
+
+import dev.foa.backend.model.entity.User;
+import dev.foa.backend.service.UserService;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import jakarta.validation.Valid;
-
-//import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.example.foa.model.dto.UserDTO;
-import com.example.foa.model.entity.User;
-import com.example.foa.service.UserService;
-
-import lombok.RequiredArgsConstructor;
-
 @RestController
 @RequestMapping("/api/users")
-@RequiredArgsConstructor
 public class UserController {
 
     private final UserService userService;
 
-    @GetMapping("")
-    public List<User> getAllUsers() {
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
+    @GetMapping({"", "/"})
+    List<User> getAllUsers() {
         return userService.getAllUsers();
     }
 
-    @GetMapping("/{id}")
-    public User getUserById(@PathVariable Long id) {
+    @GetMapping({"/{id}", "/{id}/"})
+    User getUserById(@PathVariable Integer id) {
         return userService.getUserById(id);
     }
 
-    @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public User createUser(@RequestBody @Valid UserDTO userDTO) {
-        return userService.createUser(userDTO);
+    @PostMapping({"", "/"})
+    void createUser(@Valid @RequestBody User user) {
+        userService.createUser(user);
     }
 
-    @PutMapping("/{id}")
-    public User updateUser(@PathVariable Long id, @RequestBody @Valid UserDTO userDTO) {
-        return userService.updateUser(id, userDTO);
-    }
-
-    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteUser(@PathVariable Long id) {
+    @PutMapping({"/{id}", "/{id}/"})
+    void updateUser(@Valid @RequestBody User user, @PathVariable Integer id) {
+        userService.updateUser(user, id);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping({"/{id}", "/{id}/"})
+    void deleteUser(@PathVariable Integer id) {
         userService.deleteUser(id);
     }
 
