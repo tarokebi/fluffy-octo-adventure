@@ -10,37 +10,37 @@ public class Validator {
 
 	public static void validateUserDto(UserDto userDto) {
 		if (userDto.id() == null) {
-			throw new UserBadRequestException("[V] Id is required.");
+			throw new UserBadRequestException("Id is required.");
 		}
 		if (userDto.name().isBlank()) {
-			throw new UserBadRequestException("[V] Name is required.");
+			throw new UserBadRequestException("Name is required.");
 		}
 		if (userDto.name().length() > 250) {
-			throw new UserBadRequestException("[V] Name must be between 1 and 250 characters.");
+			throw new UserBadRequestException("Name must be between 1 and 250 characters.");
 		}
 		if (userDto.email().isBlank()) {
-			throw new UserBadRequestException("[V] Email address is required.");
+			throw new UserBadRequestException("Email address is required.");
 		}
 		if (!userDto.email().matches(EMAILREGEX)) {
-			throw new UserBadRequestException("[V] Email address seems to be invalid.");
+			throw new UserBadRequestException("Email address seems to be invalid.");
 		}
 	}
 
 	public static void validateUser(User user) {
 		if (user.id() == null) {
-			throw new UserBadRequestException("[V2] id is required.");
+			throw new UserBadRequestException("id is required.");
 		}
 		if (user.name().isBlank()) {
-			throw new UserBadRequestException("[V2] Name is required.");
+			throw new UserBadRequestException("Name is required.");
 		}
 		if (user.name().length() > 250) {
-			throw new UserBadRequestException("[V2] Name must be between 1 and 250 characters.");
+			throw new UserBadRequestException("Name must be between 1 and 250 characters.");
 		}
 		if (user.email().isBlank()) {
-			throw new UserBadRequestException("[V2] Email address is required.");
+			throw new UserBadRequestException("Email address is required.");
 		}
 		if (!user.email().matches(EMAILREGEX)) {
-			throw new UserBadRequestException("[V2] Email address seems to be invalid.");
+			throw new UserBadRequestException("Email address seems to be invalid.");
 		}
 	}
 
