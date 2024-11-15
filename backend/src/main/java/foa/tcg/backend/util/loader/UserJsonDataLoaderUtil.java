@@ -1,7 +1,6 @@
 package foa.tcg.backend.util.loader;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import foa.tcg.backend.model.dto.UserDto;
 import foa.tcg.backend.model.dto.UserList;
 import foa.tcg.backend.model.entity.User;
 import foa.tcg.backend.repository.UserRepository;
@@ -31,7 +30,7 @@ public class UserJsonDataLoaderUtil implements CommandLineRunner {
 	}
 
 	@Override
-	public void run(String... args) throws Exception {
+	public void run(String... args) throws RuntimeException {
 		if (this.count() == 0) {
 			try (InputStream inputStream = TypeReference.class.getResourceAsStream("/data/users.json")) {
 				UserList allUsers = objectMapper.readValue(inputStream, UserList.class);
@@ -54,13 +53,7 @@ public class UserJsonDataLoaderUtil implements CommandLineRunner {
 
 	public void saveAll(List<User> userList) {
 		for (User user : userList) {
-			userRepository.create(new UserDto(
-					user.id(),
-					user.name(),
-					user.email(),
-					user.createdAt(),
-					user.updatedAt()
-			));
+			userRepository.create(user);
 		}
 	}
 
