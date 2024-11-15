@@ -36,9 +36,8 @@ public class UserService {
 		Optional<User> userOptional = userRepository.getById(id);
 		if (userOptional.isEmpty()) {
 			throw new UserNotFoundException("UserId '" + id + "' was not found.");
-		} else {
-			return convertUserToUserDto(userOptional.get());
 		}
+		return convertUserToUserDto(userOptional.get());
 	}
 
 	public void createUser(UserDto userDto) {
