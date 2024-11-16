@@ -18,30 +18,30 @@ public class UserController {
 		this.userService = userService;
 	}
 
-	@GetMapping({"", "/"})
+	@GetMapping("")
 	public List<UserDto> getAllUsers() {
 		return userService.getAllUsers();
 	}
 
-	@GetMapping({"/{id}", "/{id}/"})
+	@GetMapping("/{id}")
 	public UserDto getUserById(@PathVariable Integer id) {
 		return userService.getUserById(id);
 	}
 
 	@ResponseStatus(HttpStatus.CREATED)
-	@PostMapping({"", "/"})
+	@PostMapping("")
 	public void createUser(@Valid @RequestBody UserDto userDto) {
 		userService.createUser(userDto);
 	}
 
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	@PutMapping({"/{id}", "/{id}/"})
+	@PutMapping("/{id}")
 	public void updateUser(@Valid @RequestBody UserDto userDto, @PathVariable Integer id) {
 		userService.updateUser(userDto, id);
 	}
 
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	@DeleteMapping({"/{id}", "/{id}/"})
+	@DeleteMapping("/{id}")
 	public void deleteUser(@PathVariable Integer id) {
 		userService.deleteUser(id);
 	}
