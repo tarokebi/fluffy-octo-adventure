@@ -15,19 +15,19 @@ import java.time.LocalDateTime;
 @Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"id", "email"})})
 @Entity
 public record User
-		(
-				@Id
-				Integer id,
-				@NotBlank(message = "[Entity Validation] Name is required.")
-				@Size(min = 1, max = 250, message = "[Entity Validation] Name must be 1-250 characters.")
-				String name,
-				@NotBlank(message = "[Entity Validation] Email address is required.")
-				@Email(message = "[Entity Validation] Email address seems to be invalid.")
-				String email,
-				@CreatedDate
-				LocalDateTime createdAt,
-				@LastModifiedDate
-				LocalDateTime updatedAt
-		) {
+    (
+        @Id
+        Integer id,
+        @NotBlank(message = "[Entity Validation] Name is required.")
+        @Size(min = 1, max = 250, message = "[Entity Validation] Name must be 1-250 characters.")
+        String name,
+        @NotBlank(message = "[Entity Validation] Email address is required.")
+        @Email(message = "[Entity Validation] Email address seems to be invalid.")
+        String email,
+        @CreatedDate
+        LocalDateTime createdAt,
+        @LastModifiedDate
+        LocalDateTime updatedAt
+    ) {
 
 }

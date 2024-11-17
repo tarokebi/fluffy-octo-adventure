@@ -18,43 +18,43 @@ import java.util.List;
 @Component
 public class UserJsonDataLoaderUtil implements CommandLineRunner {
 
-	private static final Logger log = LoggerFactory.getLogger(UserJsonDataLoaderUtil.class);
-	private final UserRepository userRepository;
-	private final JdbcClient jdbcClient;
-	private final ObjectMapper objectMapper;
+    private static final Logger log = LoggerFactory.getLogger(UserJsonDataLoaderUtil.class);
+    private final UserRepository userRepository;
+    private final JdbcClient jdbcClient;
+    private final ObjectMapper objectMapper;
 
-	public UserJsonDataLoaderUtil(UserRepository userRepository, JdbcClient jdbcClient, ObjectMapper objectMapper) {
-		this.userRepository = userRepository;
-		this.jdbcClient = jdbcClient;
-		this.objectMapper = objectMapper;
-	}
+    public UserJsonDataLoaderUtil(UserRepository userRepository, JdbcClient jdbcClient, ObjectMapper objectMapper) {
+        this.userRepository = userRepository;
+        this.jdbcClient = jdbcClient;
+        this.objectMapper = objectMapper;
+    }
 
-	@Override
-	public void run(String... args) throws RuntimeException {
-		if (this.count() == 0) {
-			try (InputStream inputStream = TypeReference.class.getResourceAsStream("/data/users.json")) {
-				UserList allUsers = objectMapper.readValue(inputStream, UserList.class);
-				log.info("--- Reading {} users from JSON data and saving to in-memory collection... ---", allUsers.users().size());
-				this.saveAll(allUsers.users());
-			} catch (IOException e) {
-				throw new RuntimeException("Error reading users.json", e);
-			}
-		} else {
-			log.info("--- Not loading users from JSON data because collection contains data. ---");
-		}
-	}
+    @Override
+    public void run(String... args) throws RuntimeException {
+        if (this.count() == 0) {
+            try (InputStream inputStream = TypeReference.class.getResourceAsStream("/data/users.json")) {
+                UserList allUsers = objectMapper.readValue(inputStream, UserList.class);
+                log.info("--- Reading {} users from JSON data and saving to in-memory collection... ---", allUsers.users().size());
+                this.saveAll(allUsers.users());
+            } catch (IOException e) {
+                throw new RuntimeException("Error reading users.json", e);
+            }
+        } else {
+            log.info("--- Not loading users from JSON data because collection contains data. ---");
+        }
+    }
 
-	public int count() {
-		return jdbcClient.sql("SELECT * FROM appuser")
-				.query()
-				.listOfRows()
-				.size();
-	}
+    public int count() {
+        return jdbcClient.sql("SELECT * FROM appuser")
+            .query()
+            .listOfRows()
+            .size();
+    }
 
-	public void saveAll(List<User> userList) {
-		for (User user : userList) {
-			userRepository.create(user);
-		}
-	}
+    public void saveAll(List<User> userList) {
+        for (User user : userList) {
+            userRepository.create(user);
+        }
+    }
 
 }
