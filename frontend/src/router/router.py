@@ -4,11 +4,13 @@ import flet as ft
 
 from core.routed_view import RoutedView
 from views.catalog.index import Catalog
+from views.users.index import Users
 from views.index import Home
 
 VIEWS: list[RoutedView] = [
     Home,
     Catalog,
+    Users,
 ]
 
 

@@ -28,5 +28,5 @@ class RoutedView(ABC, ft.View):
 
     @classmethod
     @abstractmethod
-    def get_contents(self, page) -> list[Control]:
+    def get_contents(cls, page) -> list[Control]:
         raise NotImplementedError()
