@@ -1,8 +1,8 @@
 import flet as ft
-from flet_core.control import Control
 import requests
-
+from config import FOA_BACKEND_ENDPOINT
 from core.routed_view import RoutedView
+from flet_core.control import Control
 from views.index import Home
 
 
@@ -37,5 +37,5 @@ class Users(RoutedView):
 
     @classmethod
     def fetch_users(cls):
-        res = requests.get("http://localhost:8080/api/users")
+        res = requests.get(f"{FOA_BACKEND_ENDPOINT}/api/users")
         return res.json()

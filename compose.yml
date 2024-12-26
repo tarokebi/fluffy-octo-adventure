@@ -1,0 +1,54 @@
+services:
+  my-db:
+    image: 'postgres:17.1'
+    environment:
+      - 'POSTGRES_DB=test'
+      - 'POSTGRES_PASSWORD=pass'
+      - 'POSTGRES_USER=user'
+
+  backend:
+    image: maven:3-eclipse-temurin-21
+    volumes:
+      - ./backend:/app
+      - m2_cache:/root/.m2
+    entrypoint:
+      - mvn
+    command:
+      - spring-boot:run
+    working_dir: /app
+    ports:
+      - 8080:8080
+    depends_on:
+      - my-db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://my-db:5432/test
+      - SPRING_DATASOURCE_USERNAME=user
+      - SPRING_DATASOURCE_PASSWORD=pass
+      - SPRING_DOCKER_COMPOSE_ENABLED=false
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev-flet
+    volumes:
+      - ./frontend:/app
+    entrypoint:
+      - flet
+    command:
+      - run
+      - --web
+      - -p
+      - "3000"
+      - -d
+      - -r
+      - src
+    working_dir: /app
+    ports:
+      - 3000:3000
+    depends_on:
+      - backend
+    environment:
+      - FOA_BACKEND_ENDPOINT=http://backend:8080
+
+volumes:
+  m2_cache:
