@@ -1,9 +1,13 @@
 import time
 
+import requests
+
 import flet as ft
 
 from core.routed_view import RoutedView
+from config.url import URL_VALIDATE_AUTH
 from views.catalog.index import Catalog
+from views.login.index import Login
 from views.users.index import Users
 from views.index import Home
 
@@ -11,6 +15,7 @@ VIEWS: list[RoutedView] = [
     Home,
     Catalog,
     Users,
+    Login,
 ]
 
 
@@ -26,9 +31,16 @@ class ViewRouter:
     def route_change(self, route: ft.RouteChangeEvent):
         self.page.views.clear()
 
-        head_view = None
-
         tr = ft.TemplateRoute(route.route)
+
+        # Navigate to login view if not authenticated
+        if not self.is_authenticated():
+            if not tr.match(Login.get_path()):
+                self.page.session.set("redirect_to", route.route)
+                self.page.go(Login.get_path())
+                return
+
+        head_view = None
         for path, view in self.routes.items():
             if matched := tr.match(path):
                 head_view = view
@@ -52,3 +64,11 @@ class ViewRouter:
             self.page.views.append(stack.pop())
 
         self.page.update()
+
+    def is_authenticated(self) -> bool:
+        if token := self.page.session.get("token"):
+            headers = {"Authorization": f"Bearer {token}"}
+            res = requests.get(URL_VALIDATE_AUTH, headers=headers)
+            return res.ok
+
+        return False

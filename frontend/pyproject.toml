@@ -19,11 +19,14 @@ managed = true
 virtual = true
 dev-dependencies = [
     "ruff>=0.8.4",
+    "python-jose>=3.3.0",
+    "passlib>=1.7.4",
+    "ipython>=8.31.0",
 ]
 
 [tool.rye.scripts]
 dev = "flet run --web -p 3000 -d -r src"
 dev-native = "flet run src"
 mock = "python mock/mock.py"
-build = "flet build web src"
+build = "flet build web src --route-url-strategy hash"
 host-generated = "python -m http.server 3000 -d ./src/build/web/"
