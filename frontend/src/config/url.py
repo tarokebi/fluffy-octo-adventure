@@ -1,0 +1,5 @@
+from .env import FOA_BACKEND_ENDPOINT
+
+URL_USERS=f"{FOA_BACKEND_ENDPOINT}/api/users"
+URL_AUTH=f"{FOA_BACKEND_ENDPOINT}/api/auth"
+URL_VALIDATE_AUTH=f"{FOA_BACKEND_ENDPOINT}/api/validate-auth"

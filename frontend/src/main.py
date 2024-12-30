@@ -5,8 +5,6 @@ import router
 
 def main(page: ft.Page):
     page.title = "Fluffy Octo Adventure"
-    page.theme = ft.Theme(color_scheme_seed="green")
-    page.dark_theme = ft.Theme(color_scheme_seed="green")
 
     r = router.ViewRouter(page)
 
