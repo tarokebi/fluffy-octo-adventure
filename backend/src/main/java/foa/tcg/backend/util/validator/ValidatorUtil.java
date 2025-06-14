@@ -60,7 +60,7 @@ public class ValidatorUtil {
 
     public static void validateProduct(Product product) throws UserBadRequestException {
         if (product.id() == null) {
-            throw new UserBadRequestException("id is required.");
+            throw new UserBadRequestException("Id is required.");
         }
         if (product.name().isBlank()) {
             throw new UserBadRequestException("Name is required.");
