@@ -6,3 +6,10 @@ CREATE TABLE IF NOT EXISTS AppUser (
     updated_at TIMESTAMP,
     PRIMARY KEY(id)
 );
+
+CREATE TABLE IF NOT EXISTS product (
+    id INT NOT NULL,
+    name VARCHAR(250) NOT NULL,
+    price INT NOT NULL,
+    PRIMARY KEY(id)
+);

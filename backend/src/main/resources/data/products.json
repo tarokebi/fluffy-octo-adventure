@@ -1,0 +1,14 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Card Pack A",
+      "price": 1000
+    },
+    {
+      "id": 2,
+      "name": "Card Pack B",
+      "price": 2000
+    }
+  ]
+}
