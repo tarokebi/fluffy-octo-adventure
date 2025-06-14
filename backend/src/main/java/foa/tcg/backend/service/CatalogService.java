@@ -24,7 +24,7 @@ public class CatalogService {
 
     public List<ProductDto> getAllProducts() {
         List<Product> productList = catalogRepository.getAll();
-        List<ProductDto> productDtoList = new ArrayList<>(List.of());
+        List<ProductDto> productDtoList = new ArrayList<>(productList.size());
         for (Product product : productList) {
             productDtoList.add(convertProductToProductDto(product));
         }
