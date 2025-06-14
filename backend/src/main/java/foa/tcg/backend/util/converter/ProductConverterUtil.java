@@ -17,8 +17,8 @@ public class ProductConverterUtil {
         );
     }
 
-    public static ProductDto convertProductToProductDto(Optional<Product> productOptional) {
-        return productOptional.map(ProductConverterUtil::convertProductToProductDto).orElse(null);
+    public static Optional<ProductDto> convertProductToProductDto(Optional<Product> productOptional) {
+        return productOptional.map(ProductConverterUtil::convertProductToProductDto);
     }
 
     public static Product convertProductDtoToProduct(ProductDto productDto) {
