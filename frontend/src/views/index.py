@@ -9,7 +9,7 @@ class Home(RoutedView):
     parent = None
 
     @classmethod
-    def get_contents(self, page) -> list[Control]:
+    def get_contents(cls, page) -> list[Control]:
         contents = [
             ft.AppBar(
                 title=ft.Text("Fluffy Octo Adventure"),
