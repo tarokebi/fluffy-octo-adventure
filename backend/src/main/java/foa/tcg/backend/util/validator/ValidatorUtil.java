@@ -2,7 +2,9 @@ package foa.tcg.backend.util.validator;
 
 import foa.tcg.backend.exception.UserBadRequestException;
 import foa.tcg.backend.model.dto.UserDto;
+import foa.tcg.backend.model.dto.ProductDto;
 import foa.tcg.backend.model.entity.User;
+import foa.tcg.backend.model.entity.Product;
 
 public class ValidatorUtil {
 
@@ -41,6 +43,30 @@ public class ValidatorUtil {
         }
         if (!user.email().matches(EMAILREGEX)) {
             throw new UserBadRequestException("Email address seems to be invalid.");
+        }
+    }
+
+    public static void validateProductDto(ProductDto productDto) throws UserBadRequestException {
+        if (productDto.getId() == null) {
+            throw new UserBadRequestException("Id is required.");
+        }
+        if (productDto.getName().isBlank()) {
+            throw new UserBadRequestException("Name is required.");
+        }
+        if (productDto.getPrice() == null || productDto.getPrice() < 0) {
+            throw new UserBadRequestException("Price must be positive.");
+        }
+    }
+
+    public static void validateProduct(Product product) throws UserBadRequestException {
+        if (product.id() == null) {
+            throw new UserBadRequestException("Id is required.");
+        }
+        if (product.name().isBlank()) {
+            throw new UserBadRequestException("Name is required.");
+        }
+        if (product.price() == null || product.price() < 0) {
+            throw new UserBadRequestException("Price must be positive.");
         }
     }
 
